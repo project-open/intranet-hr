@@ -126,6 +126,8 @@ ad_proc im_employee_info_component { employee_id return_url {view_name ""} } {
 		incr ctr
 	    }
 	}
+    } else {
+	append employee_html "<tr><td colspan=2><i>Nothing defined yet</i></tr></td>\n"
     }
 
     if {$admin } {
