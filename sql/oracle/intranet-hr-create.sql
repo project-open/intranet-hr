@@ -120,14 +120,19 @@ select
 	u.*,
 	e.*,
 	pa.*,
-	pe.*
+	pe.*,
+        mr.member_state
 from
 	users u,
 	parties pa,
 	persons pe,
 	im_employees e,
 	groups g,
-	group_distinct_member_map gdmm
+	group_distinct_member_map gdmm,
+	--
+        membership_rels mr,
+        acs_magic_objects mo,
+        group_member_map m
 where
 	u.user_id = pa.party_id
 	and u.user_id = pe.person_id
@@ -135,6 +140,13 @@ where
 	and g.group_name = 'Employees'
 	and gdmm.group_id = g.group_id
 	and gdmm.member_id = u.user_id
+	--
+	and m.member_id = u.user_id
+        and mo.name = 'registered_users'
+        and m.group_id = mo.object_id
+        and m.rel_id = mr.rel_id
+        and m.rel_type = 'membership_rel'
+        and m.container_id = m.group_id
 ;
 
 
