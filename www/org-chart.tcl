@@ -37,7 +37,7 @@ if {![im_permission $user_id view_hr]} {
 
 set big_kahuna_list [db_list kahuna_find "
 select 
-	info.employee_id 
+	info.employee_id
 from
 	im_employees_active info
 where

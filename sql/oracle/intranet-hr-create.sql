@@ -120,8 +120,7 @@ select
 	u.*,
 	e.*,
 	pa.*,
-	pe.*,
-        mr.member_state
+	pe.*
 from
 	users u,
 	parties pa,
@@ -129,7 +128,7 @@ from
 	im_employees e,
 	groups g,
 	group_distinct_member_map gdmm,
-	--
+	-- for member_state=approved check:
         membership_rels mr,
         acs_magic_objects mo,
         group_member_map m
@@ -140,13 +139,14 @@ where
 	and g.group_name = 'Employees'
 	and gdmm.group_id = g.group_id
 	and gdmm.member_id = u.user_id
-	--
+	-- for member_state=approved check:
 	and m.member_id = u.user_id
         and mo.name = 'registered_users'
         and m.group_id = mo.object_id
         and m.rel_id = mr.rel_id
         and m.rel_type = 'membership_rel'
         and m.container_id = m.group_id
+	and mr.member_state = 'approved'
 ;
 
 
