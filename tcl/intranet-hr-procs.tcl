@@ -32,10 +32,12 @@ ad_proc -public im_employee_status_past {} { return 455 }
 ad_proc im_employee_info_component { employee_id return_url {view_name ""} } {
     Show some simple information about a employeer
 } {
+    if {"" == $view_name} { set view_name "employees_view" }
     ns_log Notice "im_employee_info_component: employee_id=$employee_id, view_name=$view_name"
     set current_user_id [ad_get_user_id]
 
-    if {"" == $view_name} { set view_name "employees_view" }
+#    ad_return_complaint 1 " im_employee_info-component"
+
     set department_url "/intranet/intranet-cost/cost_centers/view?cost_center_id="
     set user_url "/intranet/users/view?user_id="
 
@@ -129,5 +131,5 @@ ad_proc im_employee_info_component { employee_id return_url {view_name ""} } {
     }
     append employee_html "</table></form>\n"
 
-    return $employee_html
+    return [im_table_with_title "Employee Information" $employee_html]
 }
