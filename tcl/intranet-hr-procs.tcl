@@ -85,7 +85,7 @@ ad_proc im_employee_info_component { employee_id return_url {view_name ""} } {
 		pe.person_id = u.user_id
 		and p.party_id = u.user_id
 		and u.user_id = ci.cause_object_id(+)
-		and ci.cost_id = rc.rep_cost_id
+		and ci.cost_id = rc.cost_id
 		and u.user_id = :employee_id
 		and u.user_id = e.employee_id(+)
 		and e.department_id = cc.cost_center_id(+)
