@@ -87,11 +87,11 @@ values (10705,107,NULL,'job_title','[ns_urlencode $job_title]','','',5,'');
 
 insert into im_view_columns (column_id, view_id, group_id, column_name,
 column_render_tcl, extra_select, extra_where, sort_order, visible_for)
-values (10707,107,NULL,'job_description','$[ns_urlencode job_description]','','',7,'');
+values (10707,107,NULL,'job_description','[ns_urlencode $job_description]','','',7,'');
 
 insert into im_view_columns (column_id, view_id, group_id, column_name,
 column_render_tcl, extra_select, extra_where, sort_order, visible_for)
-values (10709,107,NULL,'availablility','$availability','','',9,'');
+values (10709,107,NULL,'availability','$availability','','',9,'');
 
 insert into im_view_columns (column_id, view_id, group_id, column_name,
 column_render_tcl, extra_select, extra_where, sort_order, visible_for)
@@ -153,7 +153,7 @@ values (10737,107,NULL,'head_of_household_p','$head_of_household_p',
 
 insert into im_view_columns (column_id, view_id, group_id, column_name,
 column_render_tcl, extra_select, extra_where, sort_order, visible_for)
-values (10739,107,NULL,'birthdate','$','','',39,'');
+values (10739,107,NULL,'birthdate','$birthdate','','',39,'');
 
 insert into im_view_columns (column_id, view_id, group_id, column_name,
 column_render_tcl, extra_select, extra_where, sort_order, visible_for)
