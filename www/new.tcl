@@ -183,7 +183,7 @@ ad_form -extend -name cost -on_request {
 		p.party_id = :employee_id
 		and p.party_id = e.employee_id
 		and p.party_id = ci.cause_object_id(+)
-		and ci.cost_id = rc.rep_cost_id(+)
+		and ci.cost_id = rc.cost_id(+)
 
 } -after_submit {
 
@@ -194,10 +194,10 @@ ad_form -extend -name cost -on_request {
     # The join between im_costs and im_repeating_costs is necessary
     # in order to elimiate all the non-repeating cost items.
     set rep_cost_id [db_string rep_costs_exist "
-	select	rc.rep_cost_id
+	select	rc.cost_id
 	from	im_repeating_costs rc,
 		im_costs ci
-	where 	rc.rep_cost_id = ci.cost_id
+	where 	rc.cost_id = ci.cost_id
 		and ci.cause_object_id = :employee_id
     " -default 0]
     if {!$rep_cost_id} {
@@ -205,7 +205,7 @@ ad_form -extend -name cost -on_request {
 	    set rep_cost_id [im_cost::new -cost_name $cost_name -cost_type_id [im_cost_type_repeating]]
 	    db_dml insert_repeating_costs "
 		insert into im_repeating_costs (
-			rep_cost_id,
+			cost_id,
 			start_date,
 			end_date
 		) values (
