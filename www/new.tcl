@@ -194,7 +194,7 @@ ad_form \
 	{social_security:text(text),optional {label $social_security_label} {html {size 10}} }
 	{insurance:text(text),optional {label $insurance_label} {html {size 10}} }
 	{other_costs:text(text),optional {label $other_cost_label} {html {size 10}} }
-	{currency:text(select),optional {label $currency_label} {options $currency_options} }
+	{currency:text(select) {label $currency_label} {options $currency_options} }
 	{salary_payments_per_year:text(text),optional {label $salary_payments_per_year_label} {html {size 10}} }
 
 	{birthdate:text(text),optional {label $birthdate_label} {html {size 10}} }
