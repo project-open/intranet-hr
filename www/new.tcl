@@ -174,7 +174,7 @@ ad_form \
     -form {
 	employee_id:key
 	{department_id:text(select) {label $department_label} {options $department_options} }
-	{supervisor_id:text(select) {label $supervisor_label} {options $supervisor_options} }
+	{supervisor_id:text(select),optional {label $supervisor_label} {options $supervisor_options} }
 	{availability:text(text) {label $availability_label} {html {size 6}} }
 	{hourly_cost:text(text),optional {label $hourly_cost_label} {html {size 10}} }
 	{employee_status_id:text(select) {label $employee_status_label} {options $employee_status_options} }
