@@ -31,6 +31,8 @@
   <msg key="lt_Recruiting_Test_Resul">Recruiting Test Result:</msg>
   <msg key="lt_Salary_Payments_per_Y">Salary Payments per Year</msg>
   <msg key="lt_There_are_currently_n">There are currently no entries matching the selected criteria</msg>
+  <msg key="lt_Vacation_Balance_From">Vacation Balance From</msg>
+  <msg key="lt_Vacation_Days_per_Yea">Vacation Days per Year</msg>
   <msg key="lt_Voluntary_Termination">Voluntary Termination</msg>
   <msg key="lt_You_are_trying_to_acc">You are trying to access a view that has not been defined in the database.</msg>
   <msg key="lt_You_dont_have_permiss">You don't have permissions to view this page</msg>
@@ -61,6 +63,8 @@
   <msg key="Termination_Date">Termination Date</msg>
   <msg key="Termination_Reason">Termination Reason</msg>
   <msg key="Users">Users</msg>
+  <msg key="Vacation_Balance">Vacation Balance</msg>
+  <msg key="Vacation_Days_Per_Year">Vacation Days Per Year</msg>
   <msg key="Work_Phone">Work Phone</msg>
   <msg key="Yes">Yes</msg>
 </message_catalog>
