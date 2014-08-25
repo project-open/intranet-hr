@@ -64,6 +64,7 @@ set user_id [ad_maybe_redirect_for_registration]
 set today [db_string birthday_today "select to_char(sysdate,'YYYY-MM-DD') from dual"]
 set date_format "YYYY-MM-DD"
 set end_century "2099-12-31"
+set today [util_memoize [list db_string now "select now()::date"]]
 set internal_id [im_company_internal]
 set action_url "/intranet-hr/new"
 set focus "cost.var_name"
@@ -291,8 +292,10 @@ if {[form is_submission $form_id]} {
     }
 
     set cost_name $employee_name
-    if {"" == $start_date} { set start_date [db_string now "select now()::date"]}
-    if {"" == $end_date} { set end_date "2099-12-31" }
+    if {"" == $birthdate} { set birthdate $today }
+    if {"" == $start_date} { set start_date $today }
+    if {"" == $end_date} { set end_date $end_century }
+    if {"" == $currency} { set currency $default_currency }
 
 
     # im_repeating_costs (and it's im_costs superclass) superclass
