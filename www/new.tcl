@@ -1,16 +1,18 @@
 # /packages/intranet-hr/www/new.tcl
 #
-# Copyright (C) 2003 - 2009 ]project-open[
+# Copyright (C) 2003 - now Project Open Business Solutions S.L.
 #
 # All rights reserved. Please check
 # http://www.project-open.com/license/ for details.
 
 ad_page_contract {
-    Create a new dynamic value or edit an existing one.
+    Employee Information form
 
     @param form_mode edit or display
 
     @author frank.bergmann@project-open.com
+    @author klaus.hofeditz@project-open.com
+
 } {
     employee_id:integer
     { return_url "/intranet-hr/index"}
@@ -61,7 +63,7 @@ ad_page_contract {
 # ------------------------------------------------------------------
 
 set user_id [ad_maybe_redirect_for_registration]
-set today [db_string birthday_today "select to_char(sysdate,'YYYY-MM-DD') from dual"]
+set today [db_string date_today "select to_char(sysdate,'YYYY-MM-DD') from dual"]
 set date_format "YYYY-MM-DD"
 set end_century "2099-12-31"
 set today [util_memoize [list db_string now "select now()::date"]]
@@ -85,7 +87,8 @@ set context [im_context_bar $page_title]
 # Insert default information if the record doesn't exist
 # ------------------------------------------------------------------
 
-if { ![info exists birthdate] || $birthdate == "" } { set birthdate $today }
+# if { ![info exists birthdate] || $birthdate == "" } { set birthdate $today }
+
 set default_currency [ad_parameter -package_id [im_package_cost_id] "DefaultCurrency" "" "EUR"]
 if { "" == $currency } {
     set currency $default_currency
@@ -121,35 +124,31 @@ set rep_cost_ids [db_list rep_costs_exist "
 		and ci.cause_object_id = :employee_id
 "]
 
-
 if {[llength $rep_cost_ids] == 0} {
     if [catch {
-		set rep_cost_id [im_cost::new -object_type "im_repeating_cost" -cost_name $employee_id -cost_type_id [im_cost_type_repeating]]
-	
-		db_dml update_costs "
-			update im_costs set
-				cause_object_id = :employee_id
-			where
-				cost_id = :rep_cost_id
+	set rep_cost_id [im_cost::new -object_type "im_repeating_cost" -cost_name $employee_id -cost_type_id [im_cost_type_repeating]]
+	db_dml update_costs "
+		update im_costs set
+			cause_object_id = :employee_id
+		where
+			cost_id = :rep_cost_id
 		"
 
-		db_dml insert_repeating_costs "
-			insert into im_repeating_costs (
-				rep_cost_id,
-				start_date,
-				end_date
-			) values (
-				:rep_cost_id,
-				to_date(:today,:date_format),
-				to_date(:today,:date_format)
-			)
+	db_dml insert_repeating_costs "
+		insert into im_repeating_costs (
+			rep_cost_id,
+			start_date,
+			end_date
+		) values (
+			:rep_cost_id,
+			to_date(:today,:date_format),
+			to_date(:today,:date_format)
+		)
 	    "
     } err_msg] {
-		ad_return_complaint 1 "<li>[_ intranet-hr.lt_Error_creating_a_new_]<br>
-		<pre>$err_msg</pre>"
+		ad_return_complaint 1 "<li>[_ intranet-hr.lt_Error_creating_a_new_]<br><pre>$err_msg</pre>"
     }
 }
-
 
 # ------------------------------------------------------------------
 # Build the form
@@ -169,7 +168,7 @@ set currency_options [im_currency_options]
 set department_only_p [parameter::get -package_id [apm_package_id_from_key intranet-hr] -parameter "EmployeeInformationShowDepartmentsOnly" -default 1]
 set department_options [im_cost_center_options -include_empty 0 -department_only_p $department_only_p]
 
-set end_date $end_century
+# set end_date $end_century
 
 set supervisor_options [im_employee_options 1]
 set salary_interval_options {{Month month} {Day day} {Week week} {Year year}}
@@ -217,6 +216,10 @@ if {"" == $currency} { set currency $default_currency }
 set form_id "employee_information"
 set after_html_birthday "<input type=\"button\" style=\"height:20px; width:20px; background: url('/resources/acs-templating/calendar.gif');\" onclick =\"return showCalendar('birthdate', 'y-m-d');\" >"
 
+set after_html_start_date "<input type=\"button\" style=\"height:20px; width:20px; background: url('/resources/acs-templating/calendar.gif');\" onclick =\"return showCalendar('start_date', 'y-m-d');\" >"
+
+set after_html_end_date "<input type=\"button\" style=\"height:20px; width:20px; background: url('/resources/acs-templating/calendar.gif');\" onclick =\"return showCalendar('end_date', 'y-m-d');\" >"
+
 template::form::create $form_id
 template::form::section $form_id ""
 template::element::create $form_id department_id -label $department_label -widget "select"  -options $department_options
@@ -235,8 +238,8 @@ template::element::create $form_id salary_payments_per_year -optional -label $sa
 template::element::create $form_id birthdate -optional -label $birthdate_label -html {size 10} -datatype date -after_html $after_html_birthday
 template::element::create $form_id job_title -optional -label $job_title_label -html {size 30} -datatype text
 template::element::create $form_id job_description -optional -datatype text -widget textarea -label $job_description_label -html {rows 5 cols 40}
-template::element::create $form_id start_date -optional -label $start_date_label -html {size 10} -datatype date
-template::element::create $form_id end_date -optional -label $end_date_label -html {size 10} -datatype date
+template::element::create $form_id start_date -optional -label $start_date_label -html {size 10} -datatype date -after_html $after_html_start_date
+template::element::create $form_id end_date -optional -label $end_date_label -html {size 10} -datatype date -after_html $after_html_end_date
 template::element::create $form_id voluntary_termination_p -label $voluntary_termination_p_label -widget "select"  -options $voluntary_termination_options -datatype text
 template::element::create $form_id termination_reason -optional -datatype text -widget textarea -label $termination_reason_label -html {rows 5 cols 40}
 template::element::create $form_id signed_nda_p -optional -datatype text -widget radio -label $signed_nda_p_label -options {{Yes t} {No f}}
@@ -271,32 +274,59 @@ set n_error 0
 
 if {[form is_submission $form_id]} {
 
-	# Form validation 
-# 	if { [catch { set birthdate_date_ansi [clock format [clock scan $birthdate] -format %Y-%m-%d] } ""] } {
-# 	    incr n_error
-# 		template::element::set_error $form_id birthdate "Bad date. Please use 'YYYY-MM-DD' to format the date."
-# 	}
+    # Form validation 
 
-# 	if { [catch { set start_date_ansi [clock format [clock scan $start_date] -format %Y-%m-%d] } ""] } {
-# 	    incr n_error
-# 		template::element::set_error $form_id start_date "Bad date. Please use 'YYYY-MM-DD' to format the date."
-# 	}
+    if { "" != $birthdate } {
+	if {[catch {
+	    if { $birthdate != [clock format [clock scan $birthdate] -format %Y-%m-%d] } {
+		ad_return_complaint 1 "<strong>[_ intranet-hr.Birthdate]</strong> [lang::message::lookup "" intranet-core.IsNotaValidDate "is not a valid date"].<br>
+            	[lang::message::lookup "" intranet-core.Current_Value "Current value"]: '$birthdate'<br>
+		[lang::message::lookup "" intranet-core.Expected_Format "Expected Format"]: 'YYYY-MM-DD'"
+	    }
+	} err_msg]} {
+	    ad_return_complaint 1 "<strong>[_ intranet-hr.Birthdate]</strong> [lang::message::lookup "" intranet-core.DoesNotHaveRightFormat "doesn't have the right format"].<br>
+		[lang::message::lookup "" intranet-core.Current_Value "Current value"]: '$birthdate<'<br>
+	        [lang::message::lookup "" intranet-core.Expected_Format "Expected Format"]: 'YYYY-MM-DD'"
+	}
+    }
 
-# 	if { [catch { set end_date_ansi [clock format [clock scan $end_date] -format %Y-%m-%d] } ""] } {
-# 	    incr n_error
-# 		template::element::set_error $form_id end_date "Bad date. Please use 'YYYY-MM-DD' to format the date."
-# 	}
+    if { "" != $start_date } {
+        if {[catch {
+            if { $start_date != [clock format [clock scan $start_date] -format %Y-%m-%d] } {
+		ad_return_complaint 1 "<strong>[_ intranet-hr.Start_date]</strong> [lang::message::lookup "" intranet-core.IsNotaValidDate "is not a valid date"].<br>
+                [lang::message::lookup "" intranet-core.Current_Value "Current value"]: '$start_date'<br>
+		[lang::message::lookup "" intranet-core.Expected_Format "Expected Format"]: 'YYYY-MM-DD'"
+            }
+        } err_msg]} {
+            ad_return_complaint 1 "<strong>[_ intranet-hr.Start_date]</strong> [lang::message::lookup "" intranet-core.DoesNotHaveRightFormat "doesn't have the right format"].<br>
+            [lang::message::lookup "" intranet-core.Current_Value "Current value"]: '$start_date<'<br>
+            [lang::message::lookup "" intranet-core.Expected_Format "Expected Format"]: 'YYYY-MM-DD'"
+        }
+    }
 
-    if {$n_error > 0} {
-	    return
+    if { "" != $end_date } {
+        if {[catch {
+            if { $end_date != [clock format [clock scan $end_date] -format %Y-%m-%d] } {
+                ad_return_complaint 1 "<strong>[_ intranet-hr.End_date]</strong> [lang::message::lookup "" intranet-core.IsNotaValidDate "is not a valid date"].<br>
+                [lang::message::lookup "" intranet-core.Current_Value "Current value"]: '$end_date'<br>
+		[lang::message::lookup "" intranet-core.Expected_Format "Expected Format"]: 'YYYY-MM-DD'
+		"
+            }
+        } err_msg]} {
+            ad_return_complaint 1 "<strong>[_ intranet-hr.End_date]</strong> [lang::message::lookup "" intranet-core.DoesNotHaveRightFormat "doesn't have the right format"].<br>
+            [lang::message::lookup "" intranet-core.Current_Value "Current value"]: '$end_date<'<br>
+            [lang::message::lookup "" intranet-core.Expected_Format "Expected Format"]: 'YYYY-MM-DD'"
+        }
+    }
+
+    if { $start_date > $end_date } {
+	ad_return_complaint 1 "[lang::message::lookup "" intranet-hr.EndDateEarlierStartDate "Please verify Start and End Date. Employee's End Date needs to be greater than Start Date"]"
     }
 
     set cost_name $employee_name
-    if {"" == $birthdate} { set birthdate $today }
     if {"" == $start_date} { set start_date $today }
     if {"" == $end_date} { set end_date $end_century }
     if {"" == $currency} { set currency $default_currency }
-
 
     # im_repeating_costs (and it's im_costs superclass) superclass
     # im_costs contains a "cause_object_id" field pointing to employee_id.
