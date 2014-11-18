@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<message_catalog package_key="intranet-hr" package_version="3.4.0.7.0" locale="zh_CN" charset="utf-8">
+<message_catalog package_key="intranet-hr" locale="zh_CN" charset="utf-8">
 
   <msg key="add_supervisor">添加上司</msg>
   <msg key="Availability_">可用 %</msg>
