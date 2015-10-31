@@ -26,8 +26,6 @@
 -- additional table *_info which contains the additional
 -- fields.
 --
-
--- prompt *** Creating im_employees
 create table im_employees (
 	employee_id		integer 
 				constraint im_employees_pk
@@ -43,7 +41,9 @@ create table im_employees (
 	availability		integer,
 	supervisor_id		integer 
 				constraint im_employees_supervisor_fk
-				references parties,
+				references parties
+				add constraint im_employees_supervisor_ck
+				check (supervisor_id != employee_id),
 	ss_number		varchar(20),
 	salary			numeric(12,3),
 	social_security		numeric(12,3),
@@ -112,9 +112,12 @@ create table im_employees (
 );
 create index im_employees_referred_idx on im_employees(referred_by);
 
-alter table im_employees
-add constraint im_employees_superv_ck
-check (supervisor_id != employee_id);
+
+-- Add all persons to im_employees
+insert into im_employees (employee_id) 
+select person_id 
+from persons
+where person_id not in (select employee_id from im_employees);
 
 
 -- Select all information for active employees
