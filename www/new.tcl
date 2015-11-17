@@ -89,7 +89,7 @@ set context [im_context_bar $page_title]
 
 # if { ![info exists birthdate] || $birthdate == "" } { set birthdate $today }
 
-set default_currency [ad_parameter -package_id [im_package_cost_id] "DefaultCurrency" "" "EUR"]
+set default_currency [im_parameter -package_id [im_package_cost_id] "DefaultCurrency" "" "EUR"]
 if { "" == $currency } {
     set currency $default_currency
 }
