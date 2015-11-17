@@ -34,7 +34,7 @@ ad_proc im_employee_info_component { employee_id return_url {view_name ""} } {
 } {
     if {"" == $view_name} { set view_name "employees_view" }
     ns_log Notice "im_employee_info_component: employee_id=$employee_id, view_name=$view_name"
-    set current_user_id [ad_get_user_id]
+    set current_user_id [ad_conn user_id]
 
     set date_format "YYYY-MM-DD"
     set number_format "9999990D99"
