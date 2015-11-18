@@ -389,7 +389,7 @@ from
 
 set filter_html "
 <form method=get action='/intranet-employee/index'>
-[export_form_vars user_group_name start_idx order_by how_many view_name letter]
+[export_vars -form {user_group_name start_idx order_by how_many view_name letter}]
 
 <table border=0 cellpadding=1 cellspacing=1>
   <tr>

@@ -34,7 +34,7 @@ if {!$user_is_admin_p && ![im_profile::member_p -profile_id [im_hr_group_id] -us
 
 set page_body "
 <form enctype=multipart/form-data method=POST action=upload-vacationdata-2.tcl>
-[export_form_vars return_url]
+[export_vars -form {return_url}]
                     <table border=0>
                       <tr> 
                         <td align=right>Filename: </td>
