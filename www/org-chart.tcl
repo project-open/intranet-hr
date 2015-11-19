@@ -106,9 +106,9 @@ set employee_listing_sql "
 set homeless_employees ""
 
 db_foreach employee_listing $employee_listing_sql {
-    append homeless_employees "  <li> <a href=../users/view?[export_url_vars employee_id]>$employee_name</a>"
+    append homeless_employees "  <li> <a href=../users/view?[export_vars -url {employee_id}]>$employee_name</a>"
     if { $user_admin_p } {
-	append homeless_employees " (<a href=admin/update-supervisor?[export_url_vars employee_id return_url]>[_ intranet-hr.add_supervisor]</a>)"
+	append homeless_employees " (<a href=admin/update-supervisor?[export_vars -url {employee_id return_url}]>[_ intranet-hr.add_supervisor]</a>)"
     }
     append homeless_employees "\n"
 }
