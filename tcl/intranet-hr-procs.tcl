@@ -149,7 +149,7 @@ ad_proc im_employee_info_component { employee_id return_url {view_name ""} } {
 	    ns_log Notice "im_employee_info_component: visible_for=$visible_for"
 	    if {"" == $visible_for || [eval $visible_for]} {
 		append employee_html "
-                <tr $td_class([expr $ctr % 2])>
+                <tr $td_class([expr {$ctr % 2}])>
 		<td>[lang::message::lookup "" "intranet-hr.[lang::util::suggest_key $column_name]" $column_name] &nbsp;</td><td>"
 		set cmd "append employee_html $column_render_tcl"
 		eval $cmd
@@ -163,7 +163,7 @@ ad_proc im_employee_info_component { employee_id return_url {view_name ""} } {
 
     if {$write} {
         append employee_html "
-        <tr $td_class([expr $ctr % 2])>
+        <tr $td_class([expr {$ctr % 2}])>
         <td></td><td><input type=submit value='[_ intranet-hr.Edit]'></td></tr>\n"
     }
     append employee_html "</table></form>\n"

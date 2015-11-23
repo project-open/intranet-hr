@@ -75,7 +75,7 @@ ad_page_contract {
 # 2. Defaults & Security
 # ---------------------------------------------------------------
 
-set user_id [ad_maybe_redirect_for_registration]
+set user_id [auth::require_login]
 set page_title "[_ intranet-hr.Users]"
 set context_bar [im_context_bar $page_title]
 set page_focus "im_header_form.keywords"
@@ -106,7 +106,7 @@ if {$user_group_id > 0} {
     # Check whether the user can "read" this group:
     set sql "select im_object_permission_p(:user_group_id, :user_id, 'read') from dual"
     set read [db_string user_can_read_user_group_p $sql]
-    if {![string equal "t" $read]} {
+    if {"t" ne $read } {
 	ad_return_complaint 1 "You don't have permissions to view this page"
 	return
     }
@@ -119,7 +119,7 @@ if {$user_group_id > 0} {
 
     set sql "select im_object_permission_p(:company_group_id, :user_id, 'read') from dual"
     set read [db_string user_can_read_user_group_p $sql]
-    if {![string equal "t" $read]} {
+    if {"t" ne $read } {
 	ad_return_complaint 1 "[_ intranet-hr.lt_You_dont_have_permiss]"
 	return
     }
@@ -146,10 +146,10 @@ if {"" == $view_name} {
 }
 
 
-if { [empty_string_p $how_many] || $how_many < 1 } {
+if { $how_many eq "" || $how_many < 1 } {
     set how_many [im_parameter -package_id [im_package_core_id] NumberResultsPerPage intranet 50]
 }
-set end_idx [expr $start_idx + $how_many - 1]
+set end_idx [expr {$start_idx + $how_many - 1}]
 
 # ---------------------------------------------------------------
 # 3. Define Table Columns
@@ -186,12 +186,12 @@ db_foreach column_list_sql $column_sql {
 	lappend column_headers "$column_name"
 	lappend column_vars "$column_render_tcl"
 
-	if [exists_and_not_null extra_from] { lappend extra_froms $extra_from }
-	if [exists_and_not_null extra_select] { lappend extra_selects $extra_select }
-	if [exists_and_not_null extra_where] { lappend extra_wheres $extra_where }
+	if {([info exists extra_from] && $extra_from ne "")} { lappend extra_froms $extra_from }
+	if {([info exists extra_select] && $extra_select ne "")} { lappend extra_selects $extra_select }
+	if {([info exists extra_where] && $extra_where ne "")} { lappend extra_wheres $extra_where }
 
-	if [exists_and_not_null order_by_clause] { 
-	    if {[string equal $order_by $column_name]} {
+	if {([info exists order_by_clause] && $order_by_clause ne "")} { 
+	    if {$order_by eq $column_name} {
 		# We need to sort the list by this column
 		set extra_order_by $order_by_clause
 	    }
@@ -269,7 +269,7 @@ if {$rec_test_result_id} {
     lappend extra_wheres "f.rec_test_result_id = :rec_test_result_id"
 }
 
-if { ![empty_string_p $letter] && [string compare $letter "ALL"] != 0 && [string compare $letter "SCROLL"] != 0 } {
+if { $letter ne "" && $letter ne "ALL"  && $letter ne "SCROLL"  } {
     set letter [string toupper $letter]
     lappend extra_wheres "im_first_letter_default_to_a(p.last_name)=:letter"
 }
@@ -362,7 +362,7 @@ $extra_order_by
 # Limit the search results to N data sets only
 # to be able to manage large sites
 #
-if { [string compare $letter "all"] == 0 } {
+if { $letter eq "all"  } {
     # Set these limits to negative values to deactivate them
     set total_in_limited -1
     set how_many -1
@@ -424,7 +424,7 @@ set filter_html "
 # ---------------------------------------------------------------
 
 # Set up colspan to be the number of headers + 1 for the # column
-set colspan [expr [llength $column_headers] + 1]
+set colspan [expr {[llength $column_headers] + 1}]
 
 # Format the header names with links that modify the
 # sort order of the SQL query.
@@ -432,14 +432,14 @@ set colspan [expr [llength $column_headers] + 1]
 set table_header_html ""
 set url "index?"
 set query_string [export_ns_set_vars url [list order_by]]
-if { ![empty_string_p $query_string] } {
+if { $query_string ne "" } {
     append url "$query_string&"
 }
 
 append table_header_html "<tr>\n"
 foreach col $column_headers {
     regsub -all " " $col "_" col_key
-    if { [string compare $order_by $col] == 0 } {
+    if { $order_by eq $col  } {
 	append table_header_html "  <td class=rowtitle>[_ intranet-hr.$col_key]</td>\n"
     } else {
 	append table_header_html "  <td class=rowtitle><a href=\"${url}order_by=[ns_urlencode $col]\">[_ intranet-hr.$col_key]</a></td>\n"
@@ -459,7 +459,7 @@ set idx $start_idx
 db_foreach projects_info_query $query {
 
     # Append together a line of data based on the "column_vars" parameter list
-    append table_body_html "<tr$bgcolor([expr $ctr % 2])>\n"
+    append table_body_html "<tr$bgcolor([expr {$ctr % 2}])>\n"
     foreach column_var $column_vars {
 	append table_body_html "\t<td valign=top>"
 	set cmd "append table_body_html $column_var"
@@ -476,7 +476,7 @@ db_foreach projects_info_query $query {
 }
 
 # Show a reasonable message when there are no result rows:
-if { [empty_string_p $table_body_html] } {
+if { $table_body_html eq "" } {
     set table_body_html "
         <tr><td colspan=$colspan><ul><li><b> 
         [_ intranet-hr.lt_There_are_currently_n]
@@ -486,7 +486,7 @@ if { [empty_string_p $table_body_html] } {
 if { $ctr == $how_many && $end_idx < $total_in_limited } {
     # This means that there are rows that we decided not to return
     # Include a link to go to the next page
-    set next_start_idx [expr $end_idx + 1]
+    set next_start_idx [expr {$end_idx + 1}]
     set next_page_url "index?start_idx=$next_start_idx&[export_ns_set_vars url [list start_idx]]"
 } else {
     set next_page_url ""
@@ -495,7 +495,7 @@ if { $ctr == $how_many && $end_idx < $total_in_limited } {
 if { $start_idx > 0 } {
     # This means we didn't start with the first row - there is
     # at least 1 previous row. add a previous page link
-    set previous_start_idx [expr $start_idx - $how_many]
+    set previous_start_idx [expr {$start_idx - $how_many}]
     if { $previous_start_idx < 0 } { set previous_start_idx 0 }
     set previous_page_url "index?start_idx=$previous_start_idx&[export_ns_set_vars url [list start_idx]]"
 } else {

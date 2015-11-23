@@ -2,7 +2,7 @@
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <master src="/packages/intranet-core/www/master">
-<property name="title">@page_title@</property>
+<property name="doc(title)">@page_title;literal@</property>
 
 
 <h1>Import Employee Data "Vacation Balance" and "Vacation Days per Year"</h1>

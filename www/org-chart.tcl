@@ -18,7 +18,7 @@ ad_page_contract {
     { starting_user_id:integer "" }
 }
 
-set user_id [ad_maybe_redirect_for_registration]
+set user_id [auth::require_login]
 set context_bar [im_context_bar [list /intranet/users/ "Users"] "Org Chart"]
 set page_title "[_ intranet-hr.Users]"
 set page_focus "im_header_form.keywords"
@@ -54,7 +54,7 @@ if { [llength $big_kahuna_list] == 0 || [llength $big_kahuna_list] > 1 } {
     return
 }
 
-if { ![exists_and_not_null starting_employee_id] } {
+if { (![info exists starting_employee_id] || $starting_employee_id eq "") } {
     set starting_employee_id [lindex $big_kahuna_list 0]
 }
 
@@ -106,14 +106,14 @@ set employee_listing_sql "
 set homeless_employees ""
 
 db_foreach employee_listing $employee_listing_sql {
-    append homeless_employees "  <li> <a href=../users/view?[export_vars -url {employee_id}]>$employee_name</a>"
+    append homeless_employees "  <li> <a href=../users/[export_vars -base view {employee_id}]>$employee_name</a>"
     if { $user_admin_p } {
-	append homeless_employees " (<a href=admin/update-supervisor?[export_vars -url {employee_id return_url}]>[_ intranet-hr.add_supervisor]</a>)"
+	append homeless_employees " (<a href=admin/[export_vars -base update-supervisor {employee_id return_url}]>[_ intranet-hr.add_supervisor]</a>)"
     }
     append homeless_employees "\n"
 }
 
-if { ![empty_string_p $homeless_employees] } {
+if { $homeless_employees ne "" } {
     append page_body "<p><h3>[_ intranet-hr.lt_Employees_without_sup]</h3>
 <ul>
 $homeless_employees

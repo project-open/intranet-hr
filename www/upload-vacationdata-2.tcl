@@ -31,7 +31,7 @@ ad_page_contract {
 # Security & Defaults
 # ---------------------------------------------------------------
 
-set user_id [ad_maybe_redirect_for_registration]
+set user_id [auth::require_login]
 set page_title "Upload Vacation Data CSV"
 set page_body ""
 set context_bar [im_context_bar $page_title]
@@ -58,7 +58,7 @@ if { $max_n_bytes && ([file size $tmp_filename] > $max_n_bytes) } {
 }
 
 # strip off the C:\directories... crud and just get the file name
-if ![regexp {([^//\\]+)$} $upload_file match filename] {
+if {![regexp {([^//\\]+)$} $upload_file match filename]} {
     # couldn't find a match
     set filename $upload_file
 }

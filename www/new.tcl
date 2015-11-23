@@ -62,7 +62,7 @@ ad_page_contract {
 # Default & Security
 # ------------------------------------------------------------------
 
-set user_id [ad_maybe_redirect_for_registration]
+set user_id [auth::require_login]
 set today [db_string date_today "select to_char(sysdate,'YYYY-MM-DD') from dual"]
 set date_format "YYYY-MM-DD"
 set end_century "2099-12-31"
@@ -87,7 +87,7 @@ set context [im_context_bar $page_title]
 # Insert default information if the record doesn't exist
 # ------------------------------------------------------------------
 
-# if { ![info exists birthdate] || $birthdate == "" } { set birthdate $today }
+# if { ![info exists birthdate] || $birthdate eq "" } { set birthdate $today }
 
 set default_currency [im_parameter -package_id [im_package_cost_id] "DefaultCurrency" "" "EUR"]
 if { "" == $currency } {
@@ -386,8 +386,8 @@ if {[form is_submission $form_id]} {
 
     if {0 == $supervisor_id} { set supervisor_id "" }
     if {"" == $salary_payments_per_year} { set salary_payments_per_year 12 }
-    if {![exists_and_not_null tax]} { set tax 0 }
-    if {![exists_and_not_null vat]} { set vat 0 }
+    if {(![info exists tax] || $tax eq "")} { set tax 0 }
+    if {(![info exists vat] || $vat eq "")} { set vat 0 }
 
     if {[info exists supervisor_id] && $supervisor_id == $employee_id} {
 		ad_return_complaint 1 "[_ intranet-hr.Employee_Own_Supervisor]"
