@@ -229,7 +229,11 @@ template::element::create $form_id employee_status_id -label $employee_status_la
 template::element::create $form_id personnel_number -optional -label $personnel_number_label -html {size 10}
 template::element::create $form_id ss_number -optional -label $ss_number_label -html {size 20}
 template::element::create $form_id currency -label $currency_label -widget "select"  -options $currency_options -values $currency 
-template::element::create $form_id hourly_cost -optional -label $hourly_cost_label -html {size 10} -datatype float
+if { [apm_package_enabled_p intranet-hr-hourly-rates] } {
+    template::element::create $form_id hourly_cost -optional -label $hourly_cost_label -html {size 10} -datatype float -mode display
+} else {
+    template::element::create $form_id hourly_cost -optional -label $hourly_cost_label -html {size 10} -datatype float
+}
 template::element::create $form_id salary -optional -label $salary_label -html {size 10} -datatype float
 template::element::create $form_id social_security -optional -label $social_security_label -html {size 10} -datatype float
 template::element::create $form_id insurance -optional -label $insurance_label -html {size 10} -datatype float
