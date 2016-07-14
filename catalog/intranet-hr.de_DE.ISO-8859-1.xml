@@ -25,7 +25,7 @@
   <msg key="lt_Error_creating_a_new_">Fehler bei der erstellung neuer wiederkehrenden Kosten für Mitarbeiter \#%employee_id%: </msg>
   <msg key="lt_Error_inserting_emplo">Fehler beim Eintrag der Mitarbeiter Kosteninformation:</msg>
   <msg key="lt_For_the_org_chart_pag">Das Organigramm erwartet einen CEO, and den alle anderen Mitarbeiter direkt oder indirekt berichten.</msg>
-  <msg key="lt_Internal_error_unknow">Interner Fehler: Unbekannter View '%view_name%' </msg>
+  <msg key="lt_Internal_error_unknow">Interner Fehler: Unbekannter View &#39;%view_name%&#39; </msg>
   <msg key="lt_Monthly_Social_Securi">Monatliche Sozialversicherung</msg>
   <msg key="lt_Please_notify_your_sy">Bitte wenden sie sich an ihren Systemadministrator.</msg>
   <msg key="lt_Recruiting_Test_Resul">Ergebnis Einstellungstest</msg>
