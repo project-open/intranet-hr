@@ -14,6 +14,7 @@
         <owner url="mailto:frank.bergmann@project-open.com">Frank Bergmann</owner>
         <summary>Employees, Salaries, OrgChart</summary>
         <vendor url="http://www.project-open.com/">]project-open[</vendor>
+        <release-date>2016-11-15</release-date>
         <description format="text/plain">Human Resources module consisting mainly of the &quot;employee&quot; business object. Employee information include payroll, corporate hierarchy (who manages whom) and demographics.</description>
 
         <provides url="intranet-hr" version="3.4.0.2.0"/>
