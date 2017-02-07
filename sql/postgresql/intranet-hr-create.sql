@@ -42,7 +42,7 @@ create table im_employees (
 	supervisor_id		integer 
 				constraint im_employees_supervisor_fk
 				references parties
-				add constraint im_employees_supervisor_ck
+				constraint im_employees_supervisor_ck
 				check (supervisor_id != employee_id),
 	ss_number		varchar(20),
 	salary			numeric(12,3),
