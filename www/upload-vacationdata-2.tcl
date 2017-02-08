@@ -48,7 +48,7 @@ if {!$user_is_admin_p && ![im_profile::member_p -profile_id [im_hr_group_id] -us
 # ---------------------------------------------------------------
 
 # number_of_bytes is the upper-limit
-set max_n_bytes [im_parameter -package_id [im_package_filestorage_id] MaxNumberOfBytes "" 0]
+set max_n_bytes [im_parameter -package_key "intranet-filestorage" MaxNumberOfBytes "" 0]
 set tmp_filename [ns_queryget upload_file.tmpfile]
 im_security_alert_check_tmpnam -location "upload-vacationdata-2" -value $tmp_filename
 

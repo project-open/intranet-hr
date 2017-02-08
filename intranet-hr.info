@@ -19,6 +19,7 @@
 
         <provides url="intranet-hr" version="5.0.0.0.0"/>
         <requires url="intranet-core" version="5.0.0.0.0"/>
+        <requires url="intranet-cost" version="5.0.0.0.0"/>
 
         <callbacks>
         </callbacks>
