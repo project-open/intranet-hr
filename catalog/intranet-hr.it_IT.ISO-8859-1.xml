@@ -23,13 +23,13 @@
   <msg key="lt_Employee_Information_">Dati del dipendente %employee_name%</msg>
   <msg key="lt_Employees_without_sup">Dipendenti senza supervisori</msg>
   <msg key="lt_Error_creating_a_new_">Errore durante la creazione di un elemento di costo periodico per il dipendente \#%employee_id%:</msg>
-  <msg key="lt_Error_inserting_emplo">Errore durante l'inserimento dei dati di costo del dipendente:</msg>
-  <msg key="lt_For_the_org_chart_pag">Affinché la pagina con l'organigramma funzioni, è necessario impostare le relazioni gerarchiche in modo che ci sia soltanto una persona (CEO o amministratore delegato) senza supervisori e senza subordinati.</msg>
-  <msg key="lt_Internal_error_unknow">Errore interno: visualizzazione sconosciuta '%view_name%'</msg>
+  <msg key="lt_Error_inserting_emplo">Errore durante l&#39;inserimento dei dati di costo del dipendente:</msg>
+  <msg key="lt_For_the_org_chart_pag">Affinché la pagina con l&#39;organigramma funzioni, è necessario impostare le relazioni gerarchiche in modo che ci sia soltanto una persona (CEO o amministratore delegato) senza supervisori e senza subordinati.</msg>
+  <msg key="lt_Internal_error_unknow">Errore interno: visualizzazione sconosciuta &#39;%view_name%&#39;</msg>
   <msg key="lt_Monthly_Social_Securi">Previdenza sociale mensile</msg>
-  <msg key="lt_Please_notify_your_sy">Avvisare l'amministratore di sistema.</msg>
+  <msg key="lt_Please_notify_your_sy">Avvisare l&#39;amministratore di sistema.</msg>
   <msg key="lt_Recruiting_Test_Resul">Risultato del test di selezione:</msg>
-  <msg key="lt_Salary_Payments_per_Y">Salari all'anno</msg>
+  <msg key="lt_Salary_Payments_per_Y">Salari all&#39;anno</msg>
   <msg key="lt_There_are_currently_n">Non esistono corrispondenze per i criteri introdotti</msg>
   <msg key="lt_Voluntary_Termination">Dimissioni</msg>
   <msg key="lt_You_are_trying_to_acc">Si sta tentando di accedere a una visualizzazione non definita nel database.</msg>
@@ -46,7 +46,7 @@
   <msg key="Nothing_defined_yet">Non ancora definito</msg>
   <msg key="Other_Costs">Altri costi</msg>
   <msg key="Recruiting_Status">Stato selezione:</msg>
-  <msg key="Salaries_per_Year">Stipendi all'anno</msg>
+  <msg key="Salaries_per_Year">Stipendi all&#39;anno</msg>
   <msg key="Salary">Stipendio</msg>
   <msg key="Salary_Period">Periodicità dello stipendio</msg>
   <msg key="Salary_period_month">Mese</msg>

@@ -24,8 +24,8 @@
   <msg key="lt_Employees_without_sup">没有上司的雇员</msg>
   <msg key="lt_Error_creating_a_new_">创建新雇员 \#%employee_id% 的成本项目报息:</msg>
   <msg key="lt_Error_inserting_emplo">插入雇员成本信息报错:</msg>
-  <msg key="lt_For_the_org_chart_pag">为了让原始页面上的图表运行,您需要设置 \&quot;who supervises whom\&quot; 关系,只有一个人(CEO即执行董事)没有上司和下属</msg>
-  <msg key="lt_Internal_error_unknow">内部错误: 未知视图 '%view_name%'</msg>
+  <msg key="lt_For_the_org_chart_pag">为了让原始页面上的图表运行,您需要设置 \&#34;who supervises whom\&#34; 关系,只有一个人(CEO即执行董事)没有上司和下属</msg>
+  <msg key="lt_Internal_error_unknow">内部错误: 未知视图 &#39;%view_name%&#39;</msg>
   <msg key="lt_Monthly_Social_Securi">月社会保障</msg>
   <msg key="lt_Please_notify_your_sy">请通知您的系统管理员.</msg>
   <msg key="lt_Recruiting_Test_Resul">录用测试结果:</msg>

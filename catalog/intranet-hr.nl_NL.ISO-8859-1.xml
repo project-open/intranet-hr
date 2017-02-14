@@ -24,8 +24,8 @@
   <msg key="lt_Employees_without_sup">Medewerkers zonder leidinggevende</msg>
   <msg key="lt_Error_creating_a_new_">Fout in het aanmaken van een nieuwe repeterende kostenpost voor medewerker \#%employee_id%:</msg>
   <msg key="lt_Error_inserting_emplo">Fout bij het invoegen van kosten informatie van een medewerker</msg>
-  <msg key="lt_For_the_org_chart_pag">U moet \&quot;who supervises whom\&quot; relaties opgezet hebben om met de organogram pagina te kunnen werken. Op die manier is er slechts een persoon (de CEO) die geen leidinggevende heeft en geen ondergeschikte.</msg>
-  <msg key="lt_Internal_error_unknow">Interne fout: onbekend scherm '%view_name%'</msg>
+  <msg key="lt_For_the_org_chart_pag">U moet \&#34;who supervises whom\&#34; relaties opgezet hebben om met de organogram pagina te kunnen werken. Op die manier is er slechts een persoon (de CEO) die geen leidinggevende heeft en geen ondergeschikte.</msg>
+  <msg key="lt_Internal_error_unknow">Interne fout: onbekend scherm &#39;%view_name%&#39;</msg>
   <msg key="lt_Monthly_Social_Securi">Maandelijkse sociale lasten</msg>
   <msg key="lt_Please_notify_your_sy">Informeer a.u.b. uw systeembeheerder.</msg>
   <msg key="lt_Recruiting_Test_Resul">W&amp;S test resultaat:</msg>
