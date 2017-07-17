@@ -31,6 +31,8 @@
   <msg key="lt_Recruiting_Test_Resul">W&amp;S test resultaat:</msg>
   <msg key="lt_Salary_Payments_per_Y">Jaarlijkse salarisbetaling</msg>
   <msg key="lt_There_are_currently_n">Er zijn geen gegevens die overeenkomen met de selectie criteria</msg>
+  <msg key="lt_Vacation_Balance_From">Saldo vakantiedagen van vorig jaar</msg>
+  <msg key="lt_Vacation_Days_per_Yea">Vakantiedagen per jaar</msg>
   <msg key="lt_Voluntary_Termination">Vrijwillig ontslag</msg>
   <msg key="lt_You_are_trying_to_acc">U probeert een scherm te tonen dat niet in de database is gedefinieerd.</msg>
   <msg key="lt_You_dont_have_permiss">U heeft geen toegang tot deze pagina</msg>
@@ -45,6 +47,7 @@
   <msg key="No_Big_Kahuna">No Big kahuna</msg>
   <msg key="Nothing_defined_yet">Nog niet gedefinieerd</msg>
   <msg key="Other_Costs">Overige kosten</msg>
+  <msg key="Personnel_Number">Personeelsnummer</msg>
   <msg key="Recruiting_Status">Status W&amp;S:</msg>
   <msg key="Salaries_per_Year">Jaarsalaris</msg>
   <msg key="Salary">Salaris</msg>
