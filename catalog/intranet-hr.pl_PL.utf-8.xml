@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<message_catalog package_key="intranet-hr" locale="pl_PL" charset="utf-8">
+
+  <msg key="Availability_">Dyspozycyjność %</msg>
+  <msg key="Birthdate">Data Urodzenia</msg>
+  <msg key="Currency">Waluta</msg>
+  <msg key="Department">Dział</msg>
+  <msg key="Edit">Edytuj</msg>
+  <msg key="Employee_Information">Informacje O Pracowniku</msg>
+  <msg key="Hourly_Cost">Stawka Godzinowa</msg>
+  <msg key="Insurance">Ubezpieczenie</msg>
+  <msg key="Job_Description">Opis Stanowiska</msg>
+  <msg key="Job_Title">Nazwa Stanowiska</msg>
+  <msg key="lt_Vacation_Balance_From">Bilans Urlopu Od</msg>
+  <msg key="lt_Vacation_Days_per_Yea">Dni Urlopu Rocznie</msg>
+  <msg key="Other_Costs">Pozostałe Koszty</msg>
+  <msg key="Salaries_per_Year">Ilość Wypłat W Roku</msg>
+  <msg key="Salary">Wynagrodzenie</msg>
+  <msg key="Salary_Period">Częstotliwość Wypłaty</msg>
+  <msg key="Salary_period_month">Miesiąc</msg>
+  <msg key="Social_Security">Ubezpieczenie Społeczne</msg>
+  <msg key="Social_Security_nr">Ubezpieczenie Społeczne nr</msg>
+  <msg key="Start_Date">Data Rozpoczęcia</msg>
+  <msg key="Supervisor">Kierownik</msg>
+  <msg key="Termination_Date">Data Zakończenia</msg>
+</message_catalog>
