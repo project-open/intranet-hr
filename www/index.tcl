@@ -13,6 +13,8 @@
 # FITNESS FOR A PARTICULAR PURPOSE.
 # See the GNU General Public License for more details.
 
+ad_returnredirect "/intranet/"
+
 # ---------------------------------------------------------------
 # 1. Page Contract
 # ---------------------------------------------------------------
@@ -210,7 +212,7 @@ set rec_stati [im_memoize_list select_project_rec_stati \
         "select category_id, category
          from im_categories
 	 where category_type = 'Intranet Recruiting Status'
-         order by lower(category_id)"]
+         order by lower(category)"]
 set rec_stati [linsert $rec_stati 0 0 All]
 
 # rec_test_results will be a list of pairs of (status_id, status)
@@ -218,7 +220,7 @@ set rec_test_results [im_memoize_list select_project_rec_test_results \
         "select category_id, category
          from im_categories
 	 where category_type = 'Intranet Recruiting Test Result'
-         order by lower(category_id)"]
+         order by lower(category)"]
 set rec_test_results [linsert $rec_test_results 0 0 All]
 
 
@@ -342,7 +344,8 @@ select
 from 
 	registered_users u, 
 	users_contact c,
-	persons p,
+	persons p
+	LEFT OUTER JOIN im_employees e on (p.person_id = e.employee_id),
 	acs_objects o
 	$extra_from
 where 
@@ -388,7 +391,7 @@ from
 # ---------------------------------------------------------------
 
 set filter_html "
-<form method=get action='/intranet-employee/index'>
+<form method=get action='/intranet-hr/index'>
 [export_vars -form {user_group_name start_idx order_by how_many view_name letter}]
 
 <table border=0 cellpadding=1 cellspacing=1>
