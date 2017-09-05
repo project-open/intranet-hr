@@ -63,6 +63,8 @@
   <msg key="Termination_Date">Beeindigingsdatum</msg>
   <msg key="Termination_Reason">Reden beeindiging</msg>
   <msg key="Users">Gebruikers</msg>
+  <msg key="Vacation_Balance">Vacation Balance</msg>
+  <msg key="Vacation_Days_Per_Year">Vacation Days Per Year</msg>
   <msg key="Work_Phone">Telefoonnummer werk</msg>
   <msg key="Yes">Ja</msg>
 </message_catalog>
