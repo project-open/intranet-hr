@@ -60,7 +60,7 @@
   <msg key="Start_date">Startdatum</msg>
   <msg key="Status">Status</msg>
   <msg key="Supervisor">Manager</msg>
-  <msg key="Termination_Date">Beendigungsdatum</msg>
+  <msg key="Termination_Date">Enddatum</msg>
   <msg key="Termination_Reason">Beendigungsgrund</msg>
   <msg key="Users">Benutzer</msg>
   <msg key="Vacation_Balance">Resturlaub Vorjahr</msg>
