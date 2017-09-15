@@ -48,7 +48,7 @@
   <msg key="Nothing_defined_yet">Bisher nichts definiert</msg>
   <msg key="Other_Costs">Andere Kosten</msg>
   <msg key="Personnel_Number">Personalnummer</msg>
-  <msg key="Recruiting_Status">Status Einstellungsprozess</msg>
+  <msg key="Recruiting_Status">Bewerbungsstatus</msg>
   <msg key="Salaries_per_Year">Anzahl Gehälter pro Jahr</msg>
   <msg key="Salary">Gehalt</msg>
   <msg key="Salary_Period">Gehaltsperiode</msg>
@@ -65,6 +65,6 @@
   <msg key="Users">Benutzer</msg>
   <msg key="Vacation_Balance">Resturlaub Vorjahr</msg>
   <msg key="Vacation_Days_Per_Year">Urlaubsanspruch</msg>
-  <msg key="Work_Phone">Arbeit Telefon</msg>
+  <msg key="Work_Phone">Arbeitsaddresse - Telefon</msg>
   <msg key="Yes">Ja</msg>
 </message_catalog>
