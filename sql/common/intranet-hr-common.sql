@@ -60,7 +60,8 @@ where category_type = 'Intranet Qualification Process';
 create or replace view im_employee_pipeline_states as
 select category_id as state_id, category as state
 from im_categories
-where category_type = 'Intranet Employee Pipeline State';
+where category_type = 'Intranet Employee Pipeline State' and 
+(enabled_p is null OR enabled_p = 't');
 
 
 
