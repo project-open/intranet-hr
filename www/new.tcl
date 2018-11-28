@@ -438,16 +438,16 @@ if {[form is_submission $form_id]} {
 		vacation_balance = :vacation_balance
 	where
 		employee_id = :employee_id
-"
+    "
 
-   ns_log Notice "Dynfield: /intranet-hr/new: im_dynfield::attribute_store -object_type person -object_id $employee_id -form_id $form_id"
-		im_dynfield::attribute_store \
-			-object_type "person" \
-			-object_id $employee_id \
-			-form_id $form_id
-
+    ns_log Notice "Dynfield: /intranet-hr/new: im_dynfield::attribute_store -object_type person -object_id $employee_id -form_id $form_id"
+    im_dynfield::attribute_store \
+	-object_type "person" \
+	-object_id $employee_id \
+	-form_id $form_id
+    
     if [catch { 
-		db_dml update_costs "
+	db_dml update_costs "
 			update im_costs set
 				cost_name = :employee_name,
 				cost_center_id = :department_id,
@@ -467,23 +467,25 @@ if {[form is_submission $form_id]} {
 				vat = :vat
 			where
 				cost_id	= :rep_cost_id
-			"
+	"
 
-		db_dml insert_repeating_costs "
+	db_dml insert_repeating_costs "
 			update im_repeating_costs set
 				start_date = :start_date,
 				end_date = :end_date
 			where
 				rep_cost_id = :rep_cost_id
-		"
+	"
 
-	 } err_msg] {
-	    ad_return_complaint 1 "<li>[_ intranet-hr.lt_Error_inserting_emplo]<BR>
+    } err_msg] {
+	ad_return_complaint 1 "<li>[_ intranet-hr.lt_Error_inserting_emplo]<BR>
             <pre>$err_msg</pre>"
-	 }
+    }
 
-	ad_returnredirect $return_url
-	ad_script_abort
+    im_audit -object_type person -action after_update -object_id $employee_id  
+
+    ad_returnredirect $return_url
+    ad_script_abort
 } 
 
 if { [form is_request $form_id] } {
