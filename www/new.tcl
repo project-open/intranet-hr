@@ -166,7 +166,7 @@ set currency_options [im_currency_options]
 # ....
 # ...visible at http://[YOUR_SERVER]/cost-centers/index/
 set department_only_p [parameter::get -package_id [apm_package_id_from_key intranet-hr] -parameter "EmployeeInformationShowDepartmentsOnly" -default 1]
-set department_options [im_cost_center_options -include_empty 0 -department_only_p $department_only_p]
+set department_options [im_cost_center_options -include_empty 1 -department_only_p $department_only_p]
 
 # set end_date $end_century
 
