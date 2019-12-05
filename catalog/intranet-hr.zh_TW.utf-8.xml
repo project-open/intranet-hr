@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<message_catalog package_key="intranet-hr" locale="zh_TW" charset="utf-8">
+
+  <msg key="Availability_">可用 %</msg>
+  <msg key="Birthdate">生日</msg>
+  <msg key="Currency">貨幣</msg>
+  <msg key="Department">部門</msg>
+  <msg key="Employee_Information">員工基本訊息</msg>
+  <msg key="Hourly_Cost">小時成本</msg>
+  <msg key="Insurance">保險</msg>
+  <msg key="Job_Description">工作描述</msg>
+  <msg key="Job_Title">職稱</msg>
+  <msg key="Other_Costs">其他成本</msg>
+  <msg key="Salaries_per_Year">年薪</msg>
+  <msg key="Salary">薪水</msg>
+  <msg key="Salary_Period">薪期</msg>
+  <msg key="Social_Security">社會保障</msg>
+  <msg key="Social_Security_nr">社會保障</msg>
+  <msg key="Start_Date">入職日期</msg>
+  <msg key="Supervisor">上司</msg>
+  <msg key="Termination_Date">離職日期</msg>
+</message_catalog>
