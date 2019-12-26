@@ -24,7 +24,6 @@
         <callbacks>
         </callbacks>
         <parameters>
-            <parameter scope="instance" datatype="number"  min_n_values="1"  max_n_values="1"  name="GITDevelopTest"  default="2" description="Git Develop Test"/>
         </parameters>
 
     </version>
