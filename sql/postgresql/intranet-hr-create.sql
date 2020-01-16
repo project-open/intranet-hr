@@ -109,7 +109,12 @@ create table im_employees (
 				references im_categories,
 	vacation_days_per_year	numeric(12,2),
 	vacation_balance	numeric(12,2),
-	personnel_number	text
+				-- From when is the vacation_balance? Should be 1st of Jan of year
+	vacation_balance_year	date 
+				default date_trunc('year', now()),
+				-- Just a backup of the previous balance
+	vacation_balance_backup_previous_year numeric(12,2)
+				default 0.0
 );
 create index im_employees_referred_idx on im_employees(referred_by);
 
