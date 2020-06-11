@@ -215,7 +215,7 @@ begin
         'im_employee_info_component \
                 $user_id \
                 $return_url \
-                [im_opt_val employee_view_name]'
+                [im_opt_val -limit_to nohtml employee_view_name]'
     );
 end;
 /
