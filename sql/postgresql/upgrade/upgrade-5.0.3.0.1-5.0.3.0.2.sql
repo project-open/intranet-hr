@@ -22,7 +22,7 @@ select im_dynfield_widget__new (
 	'integer',		-- acs_datatype
 	'im_category_tree',	-- widget
 	'integer',		-- sql_datatype
-	'{{custom {category_type "Intranet Employee Pipeline State"}}}'			-- Parameters
+	'{custom {category_type "Intranet Employee Pipeline State"}}'			-- Parameters
 );
 
 select im_dynfield_widget__new (
@@ -39,7 +39,7 @@ select im_dynfield_widget__new (
 	'integer',		-- acs_datatype
 	'im_category_tree',	-- widget
 	'integer',		-- sql_datatype
-	'{{custom {category_type "Intranet Salutation"}}}'			-- Parameters
+	'{custom {category_type "Intranet Salutation"}}'			-- Parameters
 );
 
 
@@ -57,7 +57,7 @@ select im_dynfield_widget__new (
 	'integer',		-- acs_datatype
 	'generic_sql',	-- widget
 	'integer',		-- sql_datatype
-	'{{custom {sql "select 
+	'{custom {sql "select 
                 0 as user_id,
                 ''No Supervisor (CEO)'' as user_name
         from dual
@@ -70,7 +70,7 @@ select im_dynfield_widget__new (
                 group_distinct_member_map m
         where 
                 m.member_id = u.user_id
-                and m.group_id = (select group_id from groups where group_name = ''Employee'')"}}}'			-- Parameters
+                and m.group_id = (select group_id from groups where group_name = ''Employee'')"}}'			-- Parameters
 );
 
 
