@@ -214,11 +214,9 @@ if {"" == $currency} { set currency $default_currency }
 # -- ------------------------------------------------
 
 set form_id "employee_information"
-set after_html_birthday "<input type=\"button\" style=\"height:20px; width:20px; background: url('/resources/acs-templating/calendar.gif');\" onclick =\"return showCalendar('birthdate', 'y-m-d');\" >"
-
-set after_html_start_date "<input type=\"button\" style=\"height:20px; width:20px; background: url('/resources/acs-templating/calendar.gif');\" onclick =\"return showCalendar('start_date', 'y-m-d');\" >"
-
-set after_html_end_date "<input type=\"button\" style=\"height:20px; width:20px; background: url('/resources/acs-templating/calendar.gif');\" onclick =\"return showCalendar('end_date', 'y-m-d');\" >"
+set after_html_birthday "<input type=\"button\" id=birthdate_calendar style=\"height:20px; width:20px; background: url('/resources/acs-templating/calendar.gif');\" >"
+set after_html_start_date "<input type=\"button\" id=start_date_calendar style=\"height:20px; width:20px; background: url('/resources/acs-templating/calendar.gif');\" >"
+set after_html_end_date "<input type=\"button\" id=end_date_calendar style=\"height:20px; width:20px; background: url('/resources/acs-templating/calendar.gif');\" >"
 
 template::form::create $form_id
 template::form::section $form_id ""
