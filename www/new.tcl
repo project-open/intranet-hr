@@ -19,7 +19,7 @@ ad_page_contract {
     edit_p:optional
     message:optional
     { form_mode "display" }
-    { availability:integer "100" }
+    { availability:float "100" }
     { hourly_cost:float "0" }
     { job_title "" }
     { job_description "" }
