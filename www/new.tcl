@@ -276,8 +276,11 @@ set n_error 0
 
 if {[form is_submission $form_id]} {
 
-    # Form validation 
+    # Rebuild groups for Cost Centers
+    set cc_ids [db_list cc_ids "select cost_center_id from im_cost_centers"]
+    foreach cc_id $cc_ids { im_biz_object_group_sweeper -object_id $cc_id }
 
+    # Form validation
     if { "" != $birthdate } {
 	if {[catch {
 	    if { $birthdate != [clock format [clock scan $birthdate] -format %Y-%m-%d] } {
