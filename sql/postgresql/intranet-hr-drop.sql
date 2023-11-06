@@ -66,5 +66,15 @@ end;' language 'plpgsql';
 
 -- commit;
 -- delete categories from 450 to 455
-delete from im_category_hierarchy where (parent_id >= 3700 and parent_id < 3799) or (child_id >= 3700 and child_id < 3799);
-delete from im_categories where category_id >= 3700 and category_id < 3799;
+delete from im_category_hierarchy where (parent_id >= 450 and parent_id <=455 ) or (child_id >= 450 and child_id <= 455);
+delete from im_categories where category_id >= 450 and category_id < 455;
+
+-- 41000-41099  Intranet Salutation (100)
+delete from im_categories where category_id >= 41000 and category_id < 41099;
+
+-- delete HR views
+drop view if exists im_prior_experiences;
+drop view if exists im_hiring_sources;
+drop view if exists im_job_titles;
+drop view if exists im_qualification_processes;
+drop view if exists im_employee_pipeline_states;
