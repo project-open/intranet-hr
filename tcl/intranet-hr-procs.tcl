@@ -77,6 +77,7 @@ ad_proc im_employee_info_component { employee_id return_url {view_name ""} } {
 		p.email,
 		e.*,
 		ci.*,
+		pe.*,
 		to_char(ci.start_date,:date_format) as start_date_formatted,
 		to_char(ci.end_date,:date_format) as end_date_formatted,
 		to_char(e.birthdate,:date_format) as birthdate_formatted,
