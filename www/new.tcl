@@ -493,27 +493,21 @@ if { [form is_request $form_id] } {
 
 	db_1row projects_info_query {
     	select
-        	e.*,
-            CASE    WHEN rc.start_date is null
-                    THEN to_date(:today,:date_format)
-                    ELSE to_date(to_char(rc.start_date,:date_format),:date_format)
-            END as start_date,
-            CASE    WHEN rc.end_date is null
-                        THEN to_date(:end_century,:date_format)
-                        ELSE to_date(to_char(rc.end_date,:date_format),:date_format)
-            END as end_date,
-	        ci.*,
+	    e.*,
+	    coalesce(rc.start_date, now()) as start_date,
+	    coalesce(rc.end_date, :end_century::timestamptz) as end_date,
+	    ci.*,
     	    to_char(e.birthdate,:date_format) as birthdate
     	from    
-			parties p,
-        	im_employees e,
-	        im_repeating_costs rc,
+	    parties p,
+	    im_employees e,
+	    im_repeating_costs rc,
     	    im_costs ci
-	    where
-	        p.party_id = :employee_id
+	where
+	    p.party_id = :employee_id
     	    and p.party_id = e.employee_id
-        	and p.party_id = ci.cause_object_id
-	        and ci.cost_id = rc.rep_cost_id
+	    and p.party_id = ci.cause_object_id
+	    and ci.cost_id = rc.rep_cost_id
 	}
 
 	template::element::set_value $form_id department_id $department_id
