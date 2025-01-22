@@ -494,8 +494,8 @@ if { [form is_request $form_id] } {
 	db_1row projects_info_query {
     	select
 	    e.*,
-	    coalesce(rc.start_date, now()) as start_date,
-	    coalesce(rc.end_date, :end_century::timestamptz) as end_date,
+	    coalesce(rc.start_date, now())::date as start_date,
+	    coalesce(rc.end_date, :end_century::timestamptz)::date as end_date,
 	    ci.*,
     	    to_char(e.birthdate,:date_format) as birthdate
     	from    
